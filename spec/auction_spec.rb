@@ -12,5 +12,9 @@ RSpec.describe "Item" do
     it 'exists' do
       expect(auction).to be_a(Auction)
     end
+
+    it 'starts with empty items array' do
+      expect(auction.items).to eq([])
+    end
   end
 end
