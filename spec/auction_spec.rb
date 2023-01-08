@@ -9,6 +9,9 @@ RSpec.describe "Item" do
   let(:attendee2) { Attendee.new(name: 'Bob', budget: '$75') }
   let(:attendee3) { Attendee.new(name: 'Mike', budget: '$100') }
   let(:auction) { Auction.new }
+  let(:item3) { Item.new('Homemade Chocolate Chip Cookies') }
+  let(:item4) { Item.new('2 Days Dogsitting') }
+  let(:item5) { Item.new('Forever Stamps') }
   
   describe 'IT1' do
     describe '#initialize' do
@@ -40,9 +43,7 @@ RSpec.describe "Item" do
 
   describe 'IT2' do
     before(:each) do
-      item3 = Item.new('Homemade Chocolate Chip Cookies')
-      item4 = Item.new('2 Days Dogsitting')
-      item5 = Item.new('Forever Stamps')
+
       auction.add_item(item1)
       auction.add_item(item2)
       auction.add_item(item3)
@@ -50,6 +51,7 @@ RSpec.describe "Item" do
       auction.add_item(item5)
       item1.add_bid(attendee2, 20)
       item1.add_bid(attendee1, 22)
+      item4.add_bid(attendee3, 50)
     end
 
     describe '#bids' do
@@ -63,6 +65,13 @@ RSpec.describe "Item" do
         expect(item1.current_high_bid).to eq(22)
       end
     end
-    
+
+    describe '#unpopular_items' do
+      it 'can return an array with all items without bids' do
+        expect(auction.unpopular_items).to eq([item2, item3, item5])
+        item3.add_bid(attendee2, 15)
+        expect(auction.unpopular_items).to eq([item2, item5])
+      end
+    end
   end
 end
