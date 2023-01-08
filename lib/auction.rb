@@ -40,4 +40,27 @@ class Auction
     end
     list_of_bidders
   end
+
+
+  def bidder_info
+    bidder_info_hash = Hash.new
+    bidders.each do |attendee|
+      bidder_info_hash[attendee] = { 
+        :budget => attendee.budget, 
+        :items => items_bid_on_by_attendee[attendee] }
+    end
+    
+    items_bid_on_by_attendee
+    bidder_info_hash
+  end
+
+  def items_bid_on_by_attendee
+    hash = Hash.new{ |k,v| k[v] = [] }
+    @items.each do |item|
+      item.bids.each do |bid|
+        hash[bid[0]] << item
+      end
+    end
+    hash
+  end
 end
