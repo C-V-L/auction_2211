@@ -29,4 +29,15 @@ class Auction
     end
     rev
   end
+
+  def bidders
+    list_of_bidders = []
+
+    @items.each do |item|
+      item.bids.each do |bid|
+        list_of_bidders << bid[0] if !list_of_bidders.include?(bid[0])
+      end
+    end
+    list_of_bidders
+  end
 end

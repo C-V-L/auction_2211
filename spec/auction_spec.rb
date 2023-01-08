@@ -43,7 +43,6 @@ RSpec.describe "Item" do
 
   describe 'IT2' do
     before(:each) do
-
       auction.add_item(item1)
       auction.add_item(item2)
       auction.add_item(item3)
@@ -78,6 +77,26 @@ RSpec.describe "Item" do
       it 'can total the highest bids on each item' do
         item3.add_bid(attendee2, 15)
         expect(auction.potential_revenue).to eq(87)
+      end
+    end
+  end
+
+  describe 'IT3' do
+    before(:each) do
+      auction.add_item(item1)
+      auction.add_item(item2)
+      auction.add_item(item3)
+      auction.add_item(item4)
+      auction.add_item(item5)
+      item1.add_bid(attendee2, 20)
+      item1.add_bid(attendee1, 22)
+      item4.add_bid(attendee3, 50)
+      item3.add_bid(attendee2, 15)
+    end
+
+    describe '#bidders' do
+      it 'can return an array of attendees who have bid in the auction' do
+        expect(auction.bidders).to contain_exactly(attendee1, attendee2, attendee3)
       end
     end
   end
