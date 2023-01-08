@@ -25,4 +25,10 @@ RSpec.describe "Item" do
       expect(auction.items).to eq([item1, item2])
     end
   end
+
+  describe '#item_names' do
+    it 'can return an array with the names of all items at auction' do
+      expect(auction.item_names).to eq(["Chalkware Piggy Bank", "Bamboo Picture Frame"])
+    end
+  end
 end
