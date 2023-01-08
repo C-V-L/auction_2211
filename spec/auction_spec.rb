@@ -73,5 +73,11 @@ RSpec.describe "Item" do
         expect(auction.unpopular_items).to eq([item2, item5])
       end
     end
+
+    describe '#potential_revenue' do
+      it 'can total the highest bids on each item' do
+        expect(auction.potential_revenue).to eq(87)
+      end
+    end
   end
 end
