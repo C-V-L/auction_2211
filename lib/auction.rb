@@ -49,9 +49,7 @@ class Auction
         :budget => attendee.budget, 
         :items => items_bid_on_by_attendee[attendee] }
     end
-    
-    items_bid_on_by_attendee
-    bidder_info_hash
+        bidder_info_hash
   end
 
   def items_bid_on_by_attendee
