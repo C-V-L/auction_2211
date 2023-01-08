@@ -21,4 +21,12 @@ class Auction
       end
     end.compact
   end
+
+  def potential_revenue
+    rev = 0
+    @items.each do |item|
+      rev += item.current_high_bid
+    end
+    rev
+  end
 end

@@ -10,6 +10,10 @@ class Item
   end
 
   def current_high_bid
-    @bids.values.max
+    if @bids.count > 0 
+      @bids.values.max
+    else
+      0
+    end
   end
 end

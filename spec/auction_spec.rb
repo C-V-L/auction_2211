@@ -76,6 +76,7 @@ RSpec.describe "Item" do
 
     describe '#potential_revenue' do
       it 'can total the highest bids on each item' do
+        item3.add_bid(attendee2, 15)
         expect(auction.potential_revenue).to eq(87)
       end
     end
