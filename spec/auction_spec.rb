@@ -99,5 +99,24 @@ RSpec.describe "Item" do
         expect(auction.bidders).to contain_exactly(attendee1, attendee2, attendee3)
       end
     end
+
+    describe '#bidder_info' do
+      it 'can return a hash of bidders as keys and a hash of their budget and items bid on as a value' do
+        expect_hash = {
+                  attendee1 => {
+                      :budget => 50,
+                      :items => [item1]
+                    },
+                  attendee2 => {
+                      :budget => 75,
+                      :items => [item1, item3]
+                    },
+                  attendee3 => {
+                      :budget => 100,
+                      :items => [item4]
+                    } }
+        expect(auction.bidder_info).to eq(expect_hash)
+      end
+    end
   end
 end
