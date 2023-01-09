@@ -118,5 +118,12 @@ RSpec.describe "Item" do
         expect(auction.bidder_info).to eq(expect_hash)
       end
     end
+
+    describe '#date' do
+      it 'im not really sure what it does yet' do
+        allow(auction).to receive(:date).and_return('26/03/2021')
+        expect(auction.date).to eq('26/03/2021')
+      end
+    end
   end
 end
